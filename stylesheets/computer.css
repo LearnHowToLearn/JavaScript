@@ -1,0 +1,46 @@
+/* html{
+    font-size: 50px;
+} */
+
+.numberc {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.features {
+    border-color: rgb(150, 150, 150);
+    background: rgb(150, 150, 150);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+}
+.features-add{
+    border-color: rgb(150, 150, 150);
+    background: rgb(150, 150, 150);
+    color: #fff;
+    width: 50px;
+    height: 105px;
+    font-size: 30px;
+}
+
+#icon {
+    padding: 1px 9px 1px 3px;
+}
+
+table {
+    margin: 0 auto ; 
+    /* height: 500px;    */
+}
+
+#output {
+    width: 260px;
+    height: 50px;
+    margin: 50px auto 0;
+    font-size: 40px;
+    text-align: end;
+}
