@@ -10,184 +10,236 @@
                 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
                 crossorigin="anonymous">
         <link rel="stylesheet" href="stylesheets/computer.css">
+        <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+        <link href="stylesheets/dashboard.css" rel="stylesheet">
 
         <title>computer</title>
 </head>
 
 <body>
-        <table class="mx-auto">
-                <!-- 輸出視窗 -->
-                <tr>
-                        <td colspan="5">
-                                <input type="text" id="output">
-                        </td>
-                </tr>
-                <!-- 輸出按鈕 -->
-                <tr>
-                        <td><button onclick="number('7')" value="7" class="numberc">7</button>
-                        </td>
-                        <td><button onclick="number('8')" value="8" class="numberc">8</button>
-                        </td>
-                        <td><button onclick="number('9')" value="9" class="numberc">9</button>
-                        </td>
-                        <td><button onclick="deleteTheLast()" class="features" id="icon"><i
-                                                class="fas fa-backspace"></i></button></td>
-                        <td><button onclick="positiveAndNegative()" class="features">±</button>
-                        </td>
-                </tr>
-                <tr>
-                        <td><button onclick="number('4')" value="4" class="numberc">4</button>
-                        </td>
-                        <td><button onclick="number('5')" value="5" class="numberc">5</button>
-                        </td>
-                        <td><button onclick="number('6')" value="6" class="numberc">6</button>
-                        </td>
-                        <td><button onclick="operator('×')" class="features">×</button>
-                        </td>
-                        <td><button onclick="operator('÷')" class="features">÷</button>
-                        </td>
-                </tr>
-                <tr>
-                        <td><button onclick="number('1')" value="1" class="numberc">1</button>
-                        </td>
-                        <td><button onclick="number('2')" value="2" class="numberc">2</button>
-                        </td>
-                        <td><button onclick="number('3')" value="3" class="numberc">3</button>
-                        </td>
-                        <td rowspan="2"><button onclick="operator('+')" class="features-add">+</button>
-                        </td>
-                        <td><button onclick="operator('-')" class="features">-</button>
-                        </td>
-                </tr>
-                <tr>
-                        <td><button onclick="deleteAll()" class="features"
-                                        style="border-color:red; background: red;color: #fff;">C</button>
-                        </td>
-                        <td><button onclick="number('0')" value="00" class="numberc">0</button>
-                        </td>
-                        <td><button onclick="dot('.')" value="." class="numberc">.</button>
-                        </td>
-                        <td><button onclick="equal()" class="features">=</button>
-                        </td>
-                </tr>
-        </table>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#">Project name</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="#">Dashboard</a></li>
+                                        <li><a href="#">Settings</a></li>
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Help</a></li>
+                                </ul>
+                                <form class="navbar-form navbar-right">
+                                        <input type="text" class="form-control" placeholder="Search...">
+                                </form>
+                        </div>
+                </div>
+        </nav>
 
-        <script>
-                // 暫存運算子
-                var temporaryStorage = "";
-                // 運算子數量
-                var numberOfOperators = 0;
-                // 分隔運算子前後的算式
-                var cal = new Array();
-                // 暫存小數點
-                var dotNumber = 0;
+        <div class="container-fluid">
+                <div class="row">
+                        <div class="col-sm-3 col-md-2 sidebar">
+                                <ul class="nav nav-sidebar">
+                                        <li class="active"><a href="#">Overview <span
+                                                                class="sr-only">(current)</span></a></li>
+                                        <li><a href="#">Reports</a></li>
+                                        <li><a href="#">Analytics</a></li>
+                                        <li><a href="#">Export</a></li>
+                                </ul>
+                                <ul class="nav nav-sidebar">
+                                        <li><a href="">Nav item</a></li>
+                                        <li><a href="">Nav item again</a></li>
+                                        <li><a href="">One more nav</a></li>
+                                        <li><a href="">Another nav item</a></li>
+                                        <li><a href="">More navigation</a></li>
+                                </ul>
+                                <ul class="nav nav-sidebar">
+                                        <li><a href="">Nav item again</a></li>
+                                        <li><a href="">One more nav</a></li>
+                                        <li><a href="">Another nav item</a></li>
+                                </ul>
+                        </div>
+                        <table class="mx-auto">
+                                <!-- 輸出視窗 -->
+                                <tr>
+                                        <td colspan="5">
+                                                <input type="text" id="output">
+                                        </td>
+                                </tr>
+                                <!-- 輸出按鈕 -->
+                                <tr>
+                                        <td><button onclick="number('7')" value="7" class="numberc">7</button>
+                                        </td>
+                                        <td><button onclick="number('8')" value="8" class="numberc">8</button>
+                                        </td>
+                                        <td><button onclick="number('9')" value="9" class="numberc">9</button>
+                                        </td>
+                                        <td><button onclick="deleteTheLast()" class="features" id="icon"><i
+                                                                class="fas fa-backspace"></i></button></td>
+                                        <td><button onclick="positiveAndNegative()" class="features">±</button>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td><button onclick="number('4')" value="4" class="numberc">4</button>
+                                        </td>
+                                        <td><button onclick="number('5')" value="5" class="numberc">5</button>
+                                        </td>
+                                        <td><button onclick="number('6')" value="6" class="numberc">6</button>
+                                        </td>
+                                        <td><button onclick="operator('×')" class="features">×</button>
+                                        </td>
+                                        <td><button onclick="operator('÷')" class="features">÷</button>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td><button onclick="number('1')" value="1" class="numberc">1</button>
+                                        </td>
+                                        <td><button onclick="number('2')" value="2" class="numberc">2</button>
+                                        </td>
+                                        <td><button onclick="number('3')" value="3" class="numberc">3</button>
+                                        </td>
+                                        <td rowspan="2"><button onclick="operator('+')" class="features-add">+</button>
+                                        </td>
+                                        <td><button onclick="operator('-')" class="features">-</button>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td><button onclick="deleteAll()" class="features"
+                                                        style="border-color:red; background: red;color: #fff;">C</button>
+                                        </td>
+                                        <td><button onclick="number('0')" value="00" class="numberc">0</button>
+                                        </td>
+                                        <td><button onclick="dot('.')" value="." class="numberc">.</button>
+                                        </td>
+                                        <td><button onclick="equal()" class="features">=</button>
+                                        </td>
+                                </tr>
+                        </table>
 
-                // 輸出按鈕
-                function number(number) {
-                        document.getElementById("output").value += number;
-                }
-
-                // +-×÷
-                function operator(operator) {
-                        numberOfOperators += 1;
-                        dotNumber = 0;
-                        if (numberOfOperators > 1) {
-                                operation();
-                                numberOfOperators = 1;
-                        }
-                        temporaryStorage = operator;
-                        document.getElementById("output").value += operator;
-                }
-
-                // =
-                function equal() {
-                        if (numberOfOperators > 0) {
-                                operation();
-                                numberOfOperators = 0;
-                        }
-                        else {
+                        <script>
+                                // 暫存運算子
+                                var temporaryStorage = "";
+                                // 運算子數量
+                                var numberOfOperators = 0;
+                                // 分隔運算子前後的算式
+                                var cal = new Array();
+                                // 暫存小數點
+                                var dotNumber = 0;
+                                // 取目前輸出框的值
                                 var output = document.getElementById("output").value;
-                                switch (temporaryStorage) {
-                                        case "+":
-                                                output = parseFloat(output) + parseFloat(cal[1]);
-                                                document.getElementById("output").value = output.toFixed(2);
-                                                break;
-                                        case "-":
-                                                output = output - cal[1];
-                                                document.getElementById("output").value = output.toFixed(2);
-                                                break;
-                                        case "×":
-                                                output = output * cal[1];
-                                                document.getElementById("output").value = output.toFixed(2);
-                                                break;
-                                        case "÷":
-                                                output = output / cal[1];
-                                                document.getElementById("output").value = output.toFixed(2);
-                                                break;
+
+                                // 輸出按鈕
+                                function number(number) {
+                                        document.getElementById("output").value += number;
                                 }
-                        }
-                        var output = document.getElementById("output").value;
-                        if(output.indexOf(".") != -1)
-                        {
-                                dotNumber = 1;  
-                        }
-                }
 
-                // 運算
-                function operation() {
-                        var output = document.getElementById("output").value;
+                                // +-×÷
+                                function operator(operator) {
+                                        numberOfOperators += 1;
+                                        dotNumber = 0;
+                                        if (numberOfOperators > 1) {
+                                                operation();
+                                                numberOfOperators = 1;
+                                        }
+                                        temporaryStorage = operator;
+                                        document.getElementById("output").value += operator;
+                                }
 
-                        switch (temporaryStorage) {
-                                case "+":
-                                        cal = output.split("+");
-                                        output = parseFloat(cal[0]) + parseFloat(cal[1]);
-                                        break;
-                                case "-":
-                                        cal = output.split("-");
-                                        output = cal[0] - cal[1];
-                                        break;
-                                case "×":
-                                        cal = output.split("×");
-                                        output = cal[0] * cal[1];
-                                        break;
-                                case "÷":
-                                        cal = output.split("÷");
-                                        output = cal[0] / cal[1];
-                                        break;
-                        }
-                        document.getElementById("output").value = output.toFixed(2);
-                }
+                                // =
+                                function equal() {
+                                        if (numberOfOperators > 0) {
+                                                operation();
+                                                numberOfOperators = 0;
+                                        }
+                                        // 沒有新運算子的情況下按等號會重覆執行上一個運算式
+                                        else {
+                                                switch (temporaryStorage) {
+                                                        case "+":
+                                                                output = parseFloat(output) + parseFloat(cal[1]);
+                                                                document.getElementById("output").value = output.toFixed(1);// 取小數點第二位
+                                                                break;
+                                                        case "-":
+                                                                output = output - cal[1];
+                                                                document.getElementById("output").value = output.toFixed(1);
+                                                                break;
+                                                        case "×":
+                                                                output = output * cal[1];
+                                                                document.getElementById("output").value = output.toFixed(1);
+                                                                break;
+                                                        case "÷":
+                                                                output = output / cal[1];
+                                                                document.getElementById("output").value = output.toFixed(1);
+                                                                break;
+                                                }
+                                        }
+                                        var output = document.getElementById("output").value;
+                                        if (output.indexOf(".") != -1) {
+                                                dotNumber = 1;
+                                        }
+                                }
 
-                // 刪除最後一個字元
-                function deleteTheLast() {
-                        var str = document.getElementById("output").value;
-                        str = str.substring(0, str.length - 1);
-                        document.getElementById("output").value = str;
-                }
+                                // 運算
+                                function operation() {
+                                        var output = document.getElementById("output").value;
 
-                // 清除
-                function deleteAll() {
-                        // output.value="";
-                        document.getElementById("output").value = "";
-                        temporaryStorage = "";
-                        numberOfOperators = 0;
-                        dotNumber = 0;
-                }
+                                        switch (temporaryStorage) {
+                                                case "+":
+                                                        cal = output.split("+");
+                                                        output = parseFloat(cal[0]) + parseFloat(cal[1]);
+                                                        break;
+                                                case "-":
+                                                        cal = output.split("-");
+                                                        output = cal[0] - cal[1];
+                                                        break;
+                                                case "×":
+                                                        cal = output.split("×");
+                                                        output = cal[0] * cal[1];
+                                                        break;
+                                                case "÷":
+                                                        cal = output.split("÷");
+                                                        output = cal[0] / cal[1];
+                                                        break;
+                                        }
+                                        document.getElementById("output").value = output.toFixed(1);
+                                }
 
-                // 正負號
-                function positiveAndNegative(){
-                        var output = document.getElementById("output").value;
-                        document.getElementById("output").value =output*-1;
-                }
+                                // 刪除最後一個字元
+                                function deleteTheLast() {
+                                        var str = document.getElementById("output").value;
+                                        str = str.substring(0, str.length - 1);
+                                        document.getElementById("output").value = str;
+                                }
 
-                // 小數點
-                function dot(dot){
-                        if(dotNumber == 0){
-                                document.getElementById("output").value += dot;
-                                dotNumber += 1;
-                        }
-                }
-        </script>
+                                // 清除
+                                function deleteAll() {
+                                        // output.value="";
+                                        document.getElementById("output").value = "";
+                                        temporaryStorage = "";
+                                        numberOfOperators = 0;
+                                        dotNumber = 0;
+                                }
+
+                                // 正負號
+                                function positiveAndNegative() {
+                                        var output = document.getElementById("output").value;
+                                        document.getElementById("output").value = output * -1;
+                                }
+
+                                // 小數點
+                                function dot(dot) {
+                                        if (dotNumber == 0) {
+                                                document.getElementById("output").value += dot;
+                                                dotNumber += 1;
+                                        }
+                                }
+                        </script>
 </body>
 
 </html>
