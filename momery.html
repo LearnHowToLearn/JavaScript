@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>記憶遊戲</title>
+    <style>
+        .card1,
+        .card2,
+        .card3,
+        .card4,
+        .card5,
+        .card6,
+        .card7,
+        .card8 {
+            display: table-cell;
+            width: 75px;
+            height: 100px;
+            margin: 15px auto;
+        }
+
+        .card {
+            display: table-cell;
+            width: 75px;
+            height: 100px;
+            background: url(MemoryImages/0.jpg);
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="table" class="container table">
+        <div id="row1" class="row">
+            <div class="card" id="card0" onclick="clickCard(0)"></div>
+            <div class="card" id="card1" onclick="clickCard(1)"></div>
+            <div class="card" id="card2" onclick="clickCard(2)"></div>
+            <div class="card" id="card3" onclick="clickCard(3)"></div>
+        </div>
+        <div id="row2" class="row">
+            <div class="card" id="card4" onclick="clickCard(4)"></div>
+            <div class="card" id="card5" onclick="clickCard(5)"></div>
+            <div class="card" id="card6" onclick="clickCard(6)"></div>
+            <div class="card" id="card7" onclick="clickCard(7)"></div>
+        </div>
+        <div id="row3" class="row">
+            <div class="card" id="card8" onclick="clickCard(8)"></div>
+            <div class="card" id="card9" onclick="clickCard(9)"></div>
+            <div class="card" id="card10" onclick="clickCard(10)"></div>
+            <div class="card" id="card11" onclick="clickCard(11)"></div>
+        </div>
+        <div id="row4" class="row">
+            <div class="card" id="card12" onclick="clickCard(12)"></div>
+            <div class="card" id="card13" onclick="clickCard(13)"></div>
+            <div class="card" id="card14" onclick="clickCard(14)"></div>
+            <div class="card" id="card15" onclick="clickCard(15)"></div>
+        </div>
+    </div>
+    <div>
+        <button onclick="start()">開始前先按我~</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script>
+        //存取花色
+        var randomColor = [];
+        //存取隨機數
+        var cardAddNumber = [];
+
+        function start() {
+            //隨機排列卡牌位置
+            for (var o = 0; o < 8; o++) {
+                cardAddNumber[o] = o + 1;
+                cardAddNumber[o + 8] = o + 1
+            }
+            cardAddNumber.sort(function (a, b) { return 0.5 - Math.random() });
+
+            //隨機取八個花色
+            var i = 0;
+            while (randomColor.length < 8) {
+                var pickcard = Math.floor(Math.random() * 52) + 1;
+                if (randomColor.indexOf(pickcard) == -1) {
+                    randomColor[i] = pickcard;
+                    i++;
+                }
+            }
+        }
+
+        //計算第幾次點擊
+        var frequency = 0;
+        //紀錄第一張點擊的牌
+        var first;
+
+        //點擊卡片
+        function clickCard(x) {
+            //移除卡牌背面的class
+            $('#card' + x).removeClass('card');
+            //添加花色面的class
+            $('#card' + x).addClass('card' + cardAddNumber[x]);
+            //添加花色
+            $(".card" + cardAddNumber[x]).css('background-image', 'url(MemoryImages/' + randomColor[cardAddNumber[x] - 1] + '.gif)').css('background-repeat', 'no-repeat').css('background-size', '100%');
+            //確保第二張跟第一張不同
+            if (first != x) {
+                frequency++;
+            }
+            //如果是第一張將點擊的卡片加入first
+            if (frequency == 1) {
+                first = x;
+            }
+            //如果是第二張就判斷兩張花色是否相同
+            if (frequency == 2) {
+                //如果兩張相同就將卡片隱藏
+                if (document.getElementById("card" + x).className == document.getElementById("card" + first).className) {
+                    setTimeout(() => {
+                        document.getElementById("card" + x).style.visibility = "hidden";
+                        document.getElementById("card" + first).style.visibility = "hidden";
+                    }, 200);
+                    frequency = 0;
+                }
+                //不同就翻回背面
+                else {
+                    setTimeout(() => {
+                        for (var i = 0; i < 16; i++) {
+                            document.getElementById("card" + i).className = "card";
+                            $("#card" + i).css('background-image', 'url(MemoryImages/0.jpg)');
+                        }
+                    }, 200);
+                    frequency = 0;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
